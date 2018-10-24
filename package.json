@@ -1,30 +1,57 @@
 {
   "name": "@shcca/test",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
+  "main": "src/index.js",
+  "author": "shcca",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "commit": "git-cz",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-conventional": "^7.1.2",
+    "commitizen": "^2.10.1",
+    "cz-conventional-changelog": "^2.1.0",
+    "husky": "^1.0.0-rc.14",
+    "jest": "^23.6.0",
+    "semantic-release": "^15.10.5",
+    "standard": "^12.0.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shcca/test.git"
+    "url": "https://github.com/shcca/test.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/shcca/test/issues"
   },
   "homepage": "https://github.com/shcca/test#readme",
-  "devDependencies": {
-    "commitizen": "^3.0.4",
-    "cz-conventional-changelog": "^2.1.0"
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
     }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run test"
+    }
+  },
+  "scripts": {
+    "commit": "git-cz",
+    "standard": "standard",
+    "standard:fix": "standard --fix",
+    "test": "standard && jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "semantic-release": "semantic-release"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
   }
 }
